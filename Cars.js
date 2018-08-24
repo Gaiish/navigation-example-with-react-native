@@ -8,11 +8,11 @@ import {Image, FlatList, View, } from 'react-native'
 
 import firebase from 'react-native-firebase'
 
-export default class Home extends Component{
+export default class Cars extends Component{
   constructor(props){
     super(props)
     this.state = {
-      listBeaches:[],
+      listCars:[],
       loading: false
     }
   }
@@ -21,8 +21,7 @@ export default class Home extends Component{
     //get the list of Beaches from firebase
     //this.setState({loading:true, listBeaches:[]})
     var listOfDocs = []
-    firebase.firestore().collection('beaches')
-    .orderBy('time')
+    firebase.firestore().collection('cars')
     .onSnapshot((docs)=>{
       docs.forEach((doc)=>{
         //alert(doc.data().name)
@@ -36,14 +35,14 @@ export default class Home extends Component{
         )
         //alert(img)
       })
-      this.setState({listBeaches: [...listOfDocs],
+      this.setState({listCars: [...listOfDocs],
         loading:false
       })
     })
   }
 
   render(){
-    const {listBeaches, loading} = this.state
+    const {listCars, loading} = this.state
     //alert(listBeaches)
     if (loading){
       return(<Spinner />)
@@ -52,7 +51,7 @@ export default class Home extends Component{
       <Container>
         <Content >
           <FlatList
-            data={listBeaches}
+            data={listCars}
             keyExtractor={(item)=>item.id}
             renderItem={({item})=>{
               //alert(item.name)
@@ -74,11 +73,6 @@ export default class Home extends Component{
           />
 
         </Content>
-        <Fab
-          onPress={()=>this.props.navigation.navigate('Cars')}
-        >
-          <Icon name='ios-return-right' />
-        </Fab>
       </Container>
     )
   }

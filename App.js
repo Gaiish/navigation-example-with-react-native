@@ -4,6 +4,7 @@ import {Platform, StyleSheet, View} from 'react-native';
 import Home from './Home'
 import Signup from './signup'
 import Login from './login'
+import Cars from './Cars'
 
 import {
   Container, Header, Content, Form, Item, Label,
@@ -45,7 +46,8 @@ const App = createStackNavigator({
   Home: Home,
   Signup: Signup,
   Login: Login,
-  Entrance: Entrance
+  Entrance: Entrance,
+  Cars: Cars
 },
 {
   initialRouteName: 'Entrance'
